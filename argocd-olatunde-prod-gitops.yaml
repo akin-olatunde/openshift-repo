@@ -1,0 +1,43 @@
+﻿apiVersion: argoproj.io/v1beta1
+kind: ArgoCD
+metadata:
+  name: olatunde-prod-gitops
+  namespace: olatunde-prod-gitops
+spec:
+  controller:
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "128Mi"
+      limits:
+        cpu: "1"
+        memory: "512Mi"
+  server:
+    autoscale:
+      enabled: false
+    resources:
+      requests:
+        cpu: "50m"
+        memory: "128Mi"
+    insecure: true
+  repo:
+    resources:
+      requests:
+        cpu: "50m"
+        memory: "128Mi"
+    route:
+      enabled: true
+  redis:
+    resources:
+      requests:
+        cpu: "50m"
+        memory: "128Mi"
+  sso:
+    provider: dex
+    dex:
+      requests:
+          cpu: "50m"
+          memory: "128Mi"
+      openShiftOAuth: true
+  rbac:
+    defaultPolicy: "role:admin"

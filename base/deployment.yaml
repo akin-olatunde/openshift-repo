@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: kustom-nginx
+  name: kustom-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kustom-nginx
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: kustom-nginx
+    spec:
+      containers:
+      - name: nginx
+        image: docker.io/bitnami/nginx:latest
+        # THE FIX BLOCK:
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+          name: http
+        - containerPort: 8443
+          protocol: TCP
+          name: https
+        resources: {}
