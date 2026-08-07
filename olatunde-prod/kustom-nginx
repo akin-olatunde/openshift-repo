@@ -57,7 +57,6 @@ items:
         terminationGracePeriodSeconds: 30
     observedGeneration: 26
     readyReplicas: 1
-    replicas: 1
     updatedReplicas: 1
 kind: List
 metadata:
