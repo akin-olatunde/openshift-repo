@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prod-kustom-nginx
-  namespace: olatunde-prod-gitops   # Must be in the Argo CD instance's namespace
+  name: prod-nginx
+  namespace: olatunde-prod-gitops
 spec:
   project: default
   source:
-    repoURL: https://github.com/akin-olatunde/openshift-repo.git  # REPLACE with your Git repo URL
+    repoURL: https://github.com/akin-olatunde/openshift-repo.git 
     targetRevision: main
-    path: olatunde-prod   # Path to the folder containing your manifests
+    path: olatunde-prod   
   destination:
     server: https://kubernetes.default.svc
     namespace: olatunde-prod
@@ -17,4 +17,4 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
-      - CreateNamespace=false   # Since the namespace already exists
+      - CreateNamespace=false  
