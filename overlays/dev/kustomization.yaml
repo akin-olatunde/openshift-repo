@@ -10,5 +10,5 @@ images:
 #  newTag: latest
 replicas:
 - name: kustom-nginx
-  count: 2
+  count: 1
 
