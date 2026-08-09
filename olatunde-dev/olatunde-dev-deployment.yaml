@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: dev-nginx
+  name: dev-nginx
+  namespace: olatunde-dev
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  selector:
+    matchLabels:
+      app: dev-nginx
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: dev-nginx
+    spec:
+      containers:
+      - image: docker.io/bitnami/nginx:latest
+        imagePullPolicy: IfNotPresent
+        name: nginx
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        - containerPort: 8443
+          name: https
+          protocol: TCP     

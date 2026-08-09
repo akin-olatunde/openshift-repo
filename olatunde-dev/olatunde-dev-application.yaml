@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prod-nginx
+  namespace: olatunde-prod-gitops
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/akin-olatunde/openshift-repo.git 
+    targetRevision: main
+    path: olatunde-prod   
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: olatunde-prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=false  
