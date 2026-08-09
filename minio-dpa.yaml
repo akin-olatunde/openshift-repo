@@ -1,0 +1,45 @@
+apiVersion: oadp.openshift.io/v1alpha1
+kind: DataProtectionApplication
+metadata:
+  labels:
+    app: minio
+  name: minio-dpa
+  namespace: openshift-adp
+spec:
+  backupLocations:
+    - velero:
+        config:
+          profile: default
+          region: minio
+          s3ForcePathStyle: 'true'
+          s3Url: 'http://minio-service.olatunde-storage.svc.cluster.local:9000'
+        credential:
+          key: cloud
+          name: minio-secret
+        default: true
+        objectStorage:
+          bucket: minio-bucket
+          prefix: oadp
+        provider: aws
+  configuration:
+    nodeAgent:
+      enable: true
+      podResources:
+        cpuLimit: '1'
+        cpuRequest: 50m
+        memoryLimit: 1Gi
+        memoryRequest: 128Mi
+      restorePVC:
+        ignoreDelayBinding: true
+      uploaderType: kopia
+    velero:
+      defaultPlugins:
+        - openshift
+        - aws
+        - csi
+        - kubevirt
+        - hypershift
+      defaultVolumesToFsBackup: true
+      disableFsBackup: false
+  imagePullPolicy: IfNotPresent
+
