@@ -1,0 +1,10 @@
+module crc_virtlogd 1.0;
+
+require {
+    type virtlogd_t;
+    type virt_image_t;
+    class file { open read write ioctl getattr append };
+}
+
+# THE MANDATORY INFRASTRUCTURE ALLOWANCE RULE
+allow virtlogd_t virt_image_t:file { open read write ioctl getattr append };
