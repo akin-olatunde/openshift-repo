@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: 'https://github.com/akin-olatunde/openshift-repo.git'
     targetRevision: main
-    path: 'apps' 
+    path: 'apps/management' 
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: openshift-gitops
