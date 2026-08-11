@@ -2,13 +2,14 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: dev-nginx
-  namespace: olatunde-dev-gitops
+  namespace: openshift-gitops
+  argocd.argoproj.io/sync-wave: "-1"
 spec:
   project: default
   source:
     repoURL: https://github.com/akin-olatunde/openshift-repo.git 
     targetRevision: main
-    path: olatunde-dev   
+    path: apps/workloads/nginx-dev
   destination:
     server: https://kubernetes.default.svc
     namespace: olatunde-dev

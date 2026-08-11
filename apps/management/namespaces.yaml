@@ -1,0 +1,76 @@
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: openshift-operators
+  annotations:
+    argocd.argoproj.io/sync-wave: "-15"
+        
+       
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: openshift-adp
+  annotations:
+    argocd.argoproj.io/sync-wave: "-15"
+    
+    
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: openshift-logging
+  label:
+    openshift.io/cluster-monitoring: "true"
+  annotations:
+    argocd.argoproj.io/sync-wave: "-15"    
+        
+       
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: olatunde-dev
+  annotations:
+    argocd.argoproj.io/sync-wave: "-15"
+        
+       
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: olatunde-prod
+  annotations:
+    argocd.argoproj.io/sync-wave: "-15"
+        
+       
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: olatunde-staging
+  annotations:
+    argocd.argoproj.io/sync-wave: "-15"
+        
+        
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: olatunde-admin
+  annotations:
+    argocd.argoproj.io/sync-wave: "-15"
+        
+       
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: olatunde-storage
+  annotations:
+    argocd.argoproj.io/sync-wave: "-15"
+        
+       
+---
+

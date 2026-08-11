@@ -5,6 +5,8 @@ metadata:
     app: minio
   name: minio-dpa
   namespace: openshift-adp
+  annotations:
+    argocd.argoproj.io/sync-wave: "-7"
 spec:
   backupLocations:
     - velero:

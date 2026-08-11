@@ -4,6 +4,8 @@ kind: Deployment
 metadata:
   name: minio-storage
   namespace: olatunde-storage
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
   label:
     app: minio
 spec:
