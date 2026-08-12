@@ -1,16 +1,3 @@
-
-apiVersion: operators.coreos.com/v1
-kind: OperatorGroup
-metadata:
-  name: openshift-logging
-  namespace: openshift-logging
-  annotations:
-    argocd.argoproj.io/sync-wave: "-9"
-spec:
-  targetNamespaces:
-  - openshift-logging
-  
----
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:

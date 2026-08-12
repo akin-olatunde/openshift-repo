@@ -70,7 +70,3 @@ metadata:
   name: olatunde-storage
   annotations:
     argocd.argoproj.io/sync-wave: "-15"
-        
-       
----
-
