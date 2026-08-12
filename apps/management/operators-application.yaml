@@ -5,7 +5,7 @@ metadata:
   namespace: openshift-gitops
   annotations:
     # WAVE 1: Forces the OLM subscriptions to fire first in line!
-    argocd.argoproj.io/sync-wave: "-3"
+    argocd.argoproj.io/sync-wave: "-7"
 spec:
   project: default
   source:
@@ -19,3 +19,5 @@ spec:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+    - SkipDryRunOnMissingResource=true

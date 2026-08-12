@@ -5,7 +5,7 @@ metadata:
   namespace: openshift-gitops
   annotations:
     # WAVE 3: Deploys your actual container environments last once the foundations are secure!
-    argocd.argoproj.io/sync-wave: "-1"
+    argocd.argoproj.io/sync-wave: "-6"
 spec:
   project: default
   source:
@@ -19,4 +19,5 @@ spec:
     automated:
       prune: true
       selfHeal: true
-
+    syncOptions:
+    - SkipDryRunOnMissingResource=true

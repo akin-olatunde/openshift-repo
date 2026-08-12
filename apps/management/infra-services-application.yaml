@@ -5,7 +5,7 @@ metadata:
   namespace: openshift-gitops
   annotations:
     # WAVE 2: Waits until operators are hot before applying cluster configs!
-    argocd.argoproj.io/sync-wave: "-2"
+    argocd.argoproj.io/sync-wave: "-5"
 spec:
   project: default
   source:
@@ -19,4 +19,5 @@ spec:
     automated:
       prune: true
       selfHeal: true
-
+    syncOptions:
+    - SkipDryRunOnMissingResource=true
