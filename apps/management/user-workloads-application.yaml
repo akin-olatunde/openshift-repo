@@ -4,16 +4,15 @@ metadata:
   name: child-user-workloads
   namespace: openshift-gitops
   annotations:
-    # WAVE 3: Deploys your actual container environments last once the foundations are secure!
     argocd.argoproj.io/sync-wave: "-2"
 spec:
   project: default
   source:
-    repoURL: https://github.com/akin-olatunde/openshift-repo.git
+    repoURL: 'https://github.com/akin-olatunde/openshift-repo.git'
     targetRevision: main
-    path: apps/workloads/overlays # <=== POINTS TO YOUR KUSTOMIZE OVERLAYS LAYER!
+    path: apps/workloads/overlays
   destination:
-    server: https://kubernetes.default.svc
+    server: 'https://kubernetes.default.svc'
     namespace: openshift-gitops
   syncPolicy:
     automated:

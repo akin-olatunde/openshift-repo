@@ -4,16 +4,15 @@ metadata:
   name: child-infra-services
   namespace: openshift-gitops
   annotations:
-    # WAVE 2: Waits until operators are hot before applying cluster configs!
     argocd.argoproj.io/sync-wave: "-5"
 spec:
   project: default
   source:
-    repoURL: https://github.com/akin-olatunde/openshift-repo.git
+    repoURL: 'https://github.com/akin-olatunde/openshift-repo.git'
     targetRevision: main
-    path: apps/workloads/infra-services # <=== POINTS TO CONFIGURATIONS DIRECTORY!
+    path: apps/workloads/infra-services
   destination:
-    server: https://kubernetes.default.svc
+    server: 'https://kubernetes.default.svc'
     namespace: openshift-gitops
   syncPolicy:
     automated:

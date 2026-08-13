@@ -8,11 +8,11 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/akin-olatunde/openshift-repo.git
+    repoURL: 'https://github.com/akin-olatunde/openshift-repo.git'
     targetRevision: main
     path: apps/workloads/foundation 
   destination:
-    server: https://kubernetes.default.svc
+    server: 'https://kubernetes.default.svc'
     namespace: openshift-gitops
   syncPolicy:
     automated:

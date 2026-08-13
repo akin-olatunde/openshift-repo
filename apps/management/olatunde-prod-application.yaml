@@ -7,11 +7,11 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/akin-olatunde/openshift-repo.git 
+    repoURL: 'https://github.com/akin-olatunde/openshift-repo.git'
     targetRevision: main
     path: apps/workloads/olatunde-prod
   destination:
-    server: https://kubernetes.default.svc
+    server: 'https://kubernetes.default.svc'
     namespace: olatunde-prod
   syncPolicy:
     automated:

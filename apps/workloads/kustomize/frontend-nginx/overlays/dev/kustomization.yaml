@@ -3,12 +3,12 @@ kind: Kustomization
 resources:
 - ../../base
 namespace: olatunde-dev
-namePrefix: dev-
+namePrefix: kus-dev-
 images:
 - name: docker.io/bitnami/nginx:latest  # Looks for this image name coming from the base
 #  newName: docker.io/library/nginx:alpine  # Forcefully swaps it out
 #  newTag: latest
 replicas:
-- name: kustom-nginx
+- name: kus-nginx
   count: 1
 
