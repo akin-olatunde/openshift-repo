@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kustom-nginx-service
+  labels:
+    app: kustom-nginx
+spec:
+  ports:
+  - name: port-1
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  - name: port-2
+    port: 8443
+    protocol: TCP
+    targetPort: 8443
+  selector:
+    app: kustom-nginx
+  sessionAffinity: None

@@ -1,0 +1,14 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: kustom-nginx-route
+  label:
+    app: kustom-nginx
+spec:
+  to:
+    name: 'kustom-nginx-service'
+    weight: 100
+    kind: Service
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge

@@ -1,0 +1,7 @@
+nameReference:
+  - kind: Service
+    version: v1
+    fieldSpecs:
+      - path: kustom-nginx-service # <=== TELLS KUSTOMIZE EXACTLY WHERE THE SERVICE NAME HID_ES IN A ROUTE!
+        kind: Route
+        group: route.openshift.io
