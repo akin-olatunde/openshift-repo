@@ -2,18 +2,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: kustom-nginx
-  name: kustom-nginx
+    app: kus-nginx
+  name: kus-nginx
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: kustom-nginx
+      app: kus-nginx
   strategy: {}
   template:
     metadata:
       labels:
-        app: kustom-nginx
+        app: kus-nginx
     spec:
       containers:
       - name: nginx
