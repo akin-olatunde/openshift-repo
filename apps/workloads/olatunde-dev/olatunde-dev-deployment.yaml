@@ -2,8 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: dev-nginx
-  name: dev-nginx
+    app: new-nginx
+  name: new-nginx
   namespace: olatunde-dev
 spec:
   strategy:
@@ -13,12 +13,12 @@ spec:
       maxUnavailable: 25%
   selector:
     matchLabels:
-      app: dev-nginx
-  replicas: 1
+      app: new-nginx
+  replicas: 3
   template:
     metadata:
       labels:
-        app: dev-nginx
+        app: new-nginx
     spec:
       containers:
       - image: docker.io/bitnami/nginx:latest

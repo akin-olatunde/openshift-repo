@@ -2,15 +2,13 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: global-gitops-controller-admin
-spec:
-  subjects:
+subjects:
   - kind: ServiceAccount
     # Targets the exact machine identity that was getting blocked in your logs
     name: openshift-gitops-application-controller
     namespace: openshift-gitops # The home folder namespace of the operator brains
-  roleRef:
-    kind: ClusterRole
+roleRef:
+  kind: ClusterRole
     # Binds it to the native, all-powerful cluster-admin role definition
-    name: cluster-admin 
-    apiGroup: rbac.authorization.k8s.io
-
+  name: cluster-admin 
+  apiGroup: rbac.authorization.k8s.io
