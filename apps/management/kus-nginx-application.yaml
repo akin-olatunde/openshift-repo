@@ -11,8 +11,6 @@ spec:
     repoURL: 'https://github.com/akin-olatunde/openshift-repo.git'
     targetRevision: main
     path: apps/workloads/kustomize/frontend-nginx/overlays/dev
-    kustomize:
-      namePrefix: devkus-
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: olatunde-dev
