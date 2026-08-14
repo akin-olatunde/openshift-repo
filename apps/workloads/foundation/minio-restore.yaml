@@ -1,0 +1,10 @@
+#  Restore job from backup
+apiVersion: velero.io/v1
+kind: Restore
+metadata:
+  name: olatunde-dev-restore
+  namespace: openshift-adp
+  annotations:
+    argocd.argoproj.io/sync-wave: "-8" 
+spec:
+  backupName: olatunde-dev-backup

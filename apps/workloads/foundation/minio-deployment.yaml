@@ -1,0 +1,40 @@
+# MinIO Deployment 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minio-storage
+  namespace: olatunde-storage
+  annotations:
+    argocd.argoproj.io/sync-wave: "-8"
+  label:
+    app: minio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minio
+  template:
+    metadata:
+      labels:
+        app: minio
+    spec:
+      containers:
+      - name: minio
+        image: quay.io/minio/minio:latest
+        args:
+        - server
+        - /data
+        - --console-address=:9001
+        env:
+        - name: MINIO_ROOT_USER
+          value: admin
+        - name: MINIO_ROOT_PASSWORD
+          value: egoalter
+        ports:
+        - containerPort: 9000
+        - containerPort: 9001
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%

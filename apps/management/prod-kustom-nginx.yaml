@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kustom-nginx
+  namespace: openshift-gitops
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/akin-olatunde/openshift-repo.git'
+    targetRevision: main
+    path: apps/workloads/kustomize/frontend-nginx/overlays/prod
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: olatunde-prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

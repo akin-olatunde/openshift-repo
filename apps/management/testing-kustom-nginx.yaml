@@ -1,22 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: minio-install
+  name: kustom-nginx
   namespace: openshift-gitops
   annotations:
-    argocd.argoproj.io/sync-wave: "-6"
+    argocd.argoproj.io/sync-wave: "-1"
 spec:
   project: default
   source:
     repoURL: 'https://github.com/akin-olatunde/openshift-repo.git'
     targetRevision: main
-    path: apps/workloads
+    path: apps/workloads/kustomize/frontend-nginx/overlays/testing
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: openshift-gitops
+    namespace: olatunde-testing
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-    - SkipDryRunOnMissingResource=true
