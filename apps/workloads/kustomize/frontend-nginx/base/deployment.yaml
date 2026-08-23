@@ -28,8 +28,8 @@ spec:
           name: https
         resources:
           requests:
-            memory: "64Mi"
-            cpu: "50m"
+            memory: "16Mi"
+            cpu: "10m"
           limits:
             memory: "1Gi"
             cpu: "500m"

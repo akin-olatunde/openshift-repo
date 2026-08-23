@@ -1,0 +1,38 @@
+kind: LokiStack
+apiVersion: loki.grafana.com/v1
+metadata:
+  name: logging-loki
+  namespace: openshift-logging
+  annotations:
+    argocd.argoproj.io/sync-wave: "-6"
+spec:
+  managementState: Managed
+  collection:
+    type: vector
+    resources:
+      requests:
+        cpu: "50m"       
+        memory: "128Mi"
+  components:
+    logStore:
+      type: lokistack
+      lokistack:
+        resources:
+          requests:
+            cpu: "50m"
+            memory: "128Mi"
+  limits:
+    global:
+      retention:
+        days: 2
+  size: 1x.extra-small
+  storage:
+    secret:
+      type: s3
+      name: minio-logging-secret
+    schemas:                                  
+    - effectiveDate: "2026-08-13"             
+      version: v13
+  storageClassName: crc-csi-hostpath-provisioner
+  tenants:
+    mode: openshift-logging

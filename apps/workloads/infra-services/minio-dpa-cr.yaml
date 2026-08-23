@@ -17,7 +17,7 @@ spec:
           s3Url: 'http://minio-service.olatunde-storage.svc.cluster.local:9000'
         credential:
           key: cloud
-          name: minio-secret
+          name: cloud-credentials
         default: true
         objectStorage:
           bucket: minio-bucket
@@ -31,8 +31,6 @@ spec:
         cpuRequest: 50m
         memoryLimit: 1Gi
         memoryRequest: 128Mi
-      restorePVC:
-        ignoreDelayBinding: true
       uploaderType: kopia
     velero:
       defaultPlugins:
@@ -43,5 +41,13 @@ spec:
         - hypershift
       defaultVolumesToFsBackup: true
       disableFsBackup: false
+      restorePVC:
+        ignoreDelayBinding: true
+  snapshotLocations:
+    - velero:
+        config:
+          profile: default
+          region: minio
+        provider: aws    
   imagePullPolicy: IfNotPresent
 

@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: minio-storage
+  name: minio-server
   namespace: olatunde-storage
   annotations:
     argocd.argoproj.io/sync-wave: "-8"
@@ -10,6 +10,8 @@ metadata:
     app: minio
 spec:
   replicas: 1
+  strategy:
+    type: Recreate 
   selector:
     matchLabels:
       app: minio
@@ -21,6 +23,7 @@ spec:
       containers:
       - name: minio
         image: quay.io/minio/minio:latest
+        imagePullPolicy: IfNotPresent
         args:
         - server
         - /data
@@ -32,9 +35,21 @@ spec:
           value: egoalter
         ports:
         - containerPort: 9000
+          name: s3-api
         - containerPort: 9001
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
+          name: web-ui
+        volumeMounts:
+        - name: minio-bucket
+          mountPath: /data  
+        resources:
+          requests:
+            cpu: "50m"
+            memory: "64Mi"
+          limits:
+            cpu: "500m"
+            memory: "256Mi"
+      volumes:
+      - name: minio-bucket
+        persistentVolumeClaim:
+          claimName: minio-pvc 
+          

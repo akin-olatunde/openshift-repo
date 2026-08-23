@@ -10,9 +10,7 @@ patches:
     kind: Route
     name: kustom-nginx-route
 images:
-- name: docker.io/bitnami/nginx:latest  # Looks for this image name coming from the base
-#  newName: docker.io/library/nginx:alpine  # Forcefully swaps it out
-#  newTag: latest
+- name: docker.io/bitnami/nginx:latest  
 replicas:
 - name: kustom-nginx
   count: 1

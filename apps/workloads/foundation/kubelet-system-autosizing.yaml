@@ -1,0 +1,11 @@
+apiVersion: machineconfiguration.openshift.io/v1
+kind: KubeletConfig
+metadata:
+  name: kubelet-system-autosizing
+  annotations:
+    argocd.argoproj.io/sync-wave: "-9" 
+spec:
+  autoSizingReserved: true
+  machineConfigPoolSelector:
+    matchLabels:
+      pools.operator.machineconfiguration.openshift.io/master: ""

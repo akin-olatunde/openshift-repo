@@ -1,0 +1,27 @@
+apiVersion: observability.openshift.io/v1
+kind: ClusterLogForwarder
+metadata:
+  name: vector-collector
+  namespace: openshift-logging
+spec:
+  managementState: Managed
+  outputs:
+    - lokiStack:
+        authentication:
+          token:
+            from: serviceAccount
+        target:
+          name: logging-loki
+          namespace: openshift-logging
+      name: default-lokistack
+      type: lokiStack
+  pipelines:
+    - inputRefs:
+        - application
+        - infrastructure
+        - audit
+      name: default-logstore
+      outputRefs:
+        - default-lokistack
+  serviceAccount:
+    name: vector-sa

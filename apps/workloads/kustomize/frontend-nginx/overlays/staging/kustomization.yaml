@@ -13,5 +13,5 @@ images:
 - name: docker.io/bitnami/nginx:latest
 replicas:
 - name: kustom-nginx
-  count: 2
+  count: 1
   
