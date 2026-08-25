@@ -16,5 +16,6 @@ spec:
     namespace: olatunde-staging
   syncPolicy:
     automated:
+      enabled: true
       prune: true
       selfHeal: true

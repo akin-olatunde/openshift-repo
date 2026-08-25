@@ -1,0 +1,11 @@
+
+module my-qemuimg 1.0;
+
+require {
+	type user_home_t;
+	type virtstoraged_t;
+	class file write;
+}
+
+#============= virtstoraged_t ==============
+allow virtstoraged_t user_home_t:file write;
