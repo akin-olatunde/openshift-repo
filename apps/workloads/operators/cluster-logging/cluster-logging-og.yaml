@@ -7,4 +7,3 @@ metadata:
     argocd.argoproj.io/sync-wave: "-9"
 spec:
   targetNamespaces:
-  - openshift-logging

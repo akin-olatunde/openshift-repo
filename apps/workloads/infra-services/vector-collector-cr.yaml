@@ -1,27 +1,67 @@
 apiVersion: observability.openshift.io/v1
 kind: ClusterLogForwarder
 metadata:
-  name: vector-collector
+  name: logging-collector
   namespace: openshift-logging
+  annotations: 
+    observability.openshift.io/log-level: info
 spec:
-  managementState: Managed
+  serviceAccount:
+    name: logs-collector-sa
+  collector:
+    maxUnavailable: 50%
+    resources:
+      requests:
+        memory: 128Mi
+        cpu: 25m
+      limits:
+        cpu: 50m     
+        memory: 256Mi
+    networkPolicy:
+      ruleSet: AllowAllIngressEgress
+  inputs:
+  - name: application
+    type: application
+    application:
+      tuning:
+        container:
+          maxMessageSize: 12Ki
+          rateLimitPerContainer:
+            maxRecordsPerSecond: 100
+  - name: infrastructure
+    type: infrastructure
+    infrastructure:
+      tuning:
+        container:
+          maxMessageSize: 12Ki
+          rateLimitPerContainer:
+            maxRecordsPerSecond: 100    
+  - name: audit
+    type: audit
+    audit:
+      tuning:
+        container:
+          maxMessageSize: 8Ki
+          rateLimitPerContainer:
+            maxRecordsPerSecond: 200              
   outputs:
-    - lokiStack:
+    - name: logging-loki
+      type: lokiStack
+      lokiStack:
         authentication:
           token:
             from: serviceAccount
         target:
           name: logging-loki
           namespace: openshift-logging
-      name: default-lokistack
-      type: lokiStack
+      tls:
+        ca:
+          key: service-ca.crt
+          configMapName: openshift-service-ca.crt
   pipelines:
-    - inputRefs:
+    - name: logs-to-loki
+      inputRefs:
         - application
         - infrastructure
-        - audit
-      name: default-logstore
       outputRefs:
-        - default-lokistack
-  serviceAccount:
-    name: vector-sa
+        - logging-loki

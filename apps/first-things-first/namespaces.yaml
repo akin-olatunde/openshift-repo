@@ -83,3 +83,24 @@ metadata:
   name: olatunde-testing
   annotations:
     argocd.argoproj.io/sync-wave: "-15"       
+   
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: openshift-cluster-observability-operator
+  annotations:
+    argocd.argoproj.io/sync-wave: "-15"    
+    
+    
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: aistor
+  annotations:
+    argocd.argoproj.io/sync-wave: "-15"    
+    
+    

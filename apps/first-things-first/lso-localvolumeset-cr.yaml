@@ -1,0 +1,25 @@
+kind: LocalVolumeSet
+apiVersion: local.storage.openshift.io/v1alpha1
+metadata:
+  name: lso-storage
+  namespace: openshift-local-storage
+spec:
+  deviceInclusionSpec:
+    deviceMechanicalProperties:
+      - Rotational
+      - NonRotational
+    deviceTypes:
+      - disk
+      - part
+    maxSize: 55G
+    minSize: 40G
+  maxDeviceCount: 10
+  nodeSelector:
+    nodeSelectorTerms:
+      - matchExpressions:
+          - key: kubernetes.io/hostname
+            operator: In
+            values:
+              - crc
+  storageClassName: lso-sc
+  volumeMode: Filesystem

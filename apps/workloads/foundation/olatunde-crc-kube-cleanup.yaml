@@ -1,0 +1,14 @@
+apiVersion: machineconfiguration.openshift.io/v1
+kind: KubeletConfig
+metadata:
+  name: olatunde-crc-cleanup
+  annotations:
+    argocd.argoproj.io/sync-wave: "-9"
+spec:
+  machineConfigPoolSelector:
+    matchLabels:
+      pools.operator.machineconfiguration.openshift.io/master: ""
+  kubeletConfig:
+    imageGCHighThresholdPercent: 75   # Run aggressive cleanup the second disk usage hits 80%
+    imageGCLowThresholdPercent: 60    # Stop cleanup once disk drops back down to 70%
+

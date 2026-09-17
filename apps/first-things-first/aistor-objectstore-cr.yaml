@@ -1,0 +1,43 @@
+kind: ObjectStore
+apiVersion: aistor.min.io/v1
+metadata:
+  annotations:
+    prometheus.io/path: /minio/v2/metrics/cluster
+    prometheus.io/port: '9000'
+    prometheus.io/scrape: 'true'
+  labels:
+    app: minio
+  name: aistor-object-store
+  namespace: aistor
+spec:
+  configuration: 
+    name: minio-env-configuration
+  cache:
+    enabled: false
+  certificates:
+    disableAutoCert: false
+  firewall:
+    enabled: false
+  mountPath: /export
+  podManagementPolicy: Parallel
+  pools:
+    - annotations:
+        io.kubernetes.cri-o.TrySkipVolumeSELinuxLabel: 'true'
+      name: pool-0
+      securityContext:
+        fsGroupChangePolicy: OnRootMismatch
+      servers: 1
+      volumeClaimTemplate:
+        apiVersion: v1
+        kind: persistentvolumeclaims
+        metadata:
+          name: data
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 46Gi
+          storageClassName: lso-sc
+      volumesPerServer: 1
+  rollingTimeoutSeconds: 600

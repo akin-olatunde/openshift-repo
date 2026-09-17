@@ -1,0 +1,60 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+name: logs-collector-write-logs
+roleRef:
+apiGroup: rbac.authorization.k8s.io
+kind: ClusterRole
+name: logging-collector-logs-writer
+subjects:
+- kind: ServiceAccount
+name: logs-collector-sa
+namespace: openshift-logging
+
+
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+name: logs-collector-application
+roleRef:
+apiGroup: rbac.authorization.k8s.io
+kind: ClusterRole
+name: collect-application-logs
+subjects:
+- kind: ServiceAccount
+name: logs-collector-sa
+namespace: openshift-logging
+
+
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+name: logs-collector-infrastructure
+roleRef:
+apiGroup: rbac.authorization.k8s.io
+kind: ClusterRole
+name: collect-infrastructure-logs
+subjects:
+- kind: ServiceAccount
+name: logs-collector-sa
+namespace: openshift-logging
+
+
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+name: logs-collector-audit
+roleRef:
+apiGroup: rbac.authorization.k8s.io
+kind: ClusterRole
+name: collect-audit-logs
+subjects:
+- kind: ServiceAccount
+name: logs-collector-sa
+namespace: openshift-logging

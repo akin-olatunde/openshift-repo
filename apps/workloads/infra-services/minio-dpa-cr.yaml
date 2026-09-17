@@ -26,6 +26,8 @@ spec:
   configuration:
     nodeAgent:
       enable: true
+      restorePVC: 
+        ignoreDelayBinding: true
       podResources:
         cpuLimit: '1'
         cpuRequest: 50m
