@@ -1,0 +1,11 @@
+---
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: openshift-gitops-operator-og
+  namespace: openshift-gitops-operator
+  annotations:
+    argocd.argoproj.io/sync-wave: "-15"
+spec:
+  upgradeStrategy: Default
+

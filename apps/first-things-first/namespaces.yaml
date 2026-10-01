@@ -1,5 +1,14 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: openshift-gitops
+  labels: 
+    openshift.io/cluster-monitoring: "true"
+  annotations:
+    argocd.argoproj.io/sync-wave: "-15"
 
-
+        
         
        
 ---
@@ -7,6 +16,8 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: openshift-adp
+  labels: 
+    openshift.io/cluster-monitoring: "true"
   annotations:
     argocd.argoproj.io/sync-wave: "-15"
     
@@ -16,7 +27,7 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: openshift-logging
-  label:
+  labels:
     openshift.io/cluster-monitoring: "true"
   annotations:
     argocd.argoproj.io/sync-wave: "-15"    
@@ -27,6 +38,8 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: olatunde-dev
+  labels: 
+    openshift.io/cluster-monitoring: "true"
   annotations:
     argocd.argoproj.io/sync-wave: "-15"
         
@@ -36,6 +49,8 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: olatunde-prod
+  labels: 
+    openshift.io/cluster-monitoring: "true"
   annotations:
     argocd.argoproj.io/sync-wave: "-15"
         
@@ -45,6 +60,8 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: olatunde-staging
+  labels: 
+    openshift.io/cluster-monitoring: "true"
   annotations:
     argocd.argoproj.io/sync-wave: "-15"
         
@@ -54,6 +71,8 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: olatunde-admin
+  labels: 
+    openshift.io/cluster-monitoring: "true"
   annotations:
     argocd.argoproj.io/sync-wave: "-15"
         
@@ -63,6 +82,8 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: olatunde-storage
+  labels: 
+    openshift.io/cluster-monitoring: "true"
   annotations:
     argocd.argoproj.io/sync-wave: "-15"
     
@@ -72,6 +93,8 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: openshift-vertical-pod-autoscaler
+  labels: 
+    openshift.io/cluster-monitoring: "true"
   annotations:
     argocd.argoproj.io/sync-wave: "-15"   
     
@@ -81,6 +104,8 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: olatunde-testing
+  labels: 
+    openshift.io/cluster-monitoring: "true"
   annotations:
     argocd.argoproj.io/sync-wave: "-15"       
    
@@ -90,6 +115,8 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: openshift-cluster-observability-operator
+  labels: 
+    openshift.io/cluster-monitoring: "true"
   annotations:
     argocd.argoproj.io/sync-wave: "-15"    
     
@@ -100,6 +127,8 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: aistor
+  labels: 
+    openshift.io/cluster-monitoring: "true"
   annotations:
     argocd.argoproj.io/sync-wave: "-15"    
     
